@@ -2,61 +2,60 @@
 
 **Lightweight Camera-LiDAR BEV Fusion 3D Object Detector**
 
-A from-scratch implementation of a lightweight BEV fusion architecture built as an [OpenPCDet](https://github.com/open-mmlab/OpenPCDet) plugin. Evaluated on KITTI (primary) and nuScenes-mini (secondary).
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch 2.1+](https://img.shields.io/badge/pytorch-2.1+-ee4c2c.svg)](https://pytorch.org/)
+[![OpenPCDet](https://img.shields.io/badge/OpenPCDet-Plugin-brightgreen.svg)](third_party/OpenPCDet)
 
-## Architecture
+A lightweight Bird's-Eye-View (BEV) camera-LiDAR 3D object detection framework built as a pure-PyTorch [OpenPCDet](https://github.com/open-mmlab/OpenPCDet) plugin. Evaluated on the KITTI Vision Benchmark and nuScenes-mini.
 
-| Component | Implementation |
-|---|---|
-| LiDAR encoder | PillarVFE → PointPillarScatter → BaseBEVBackbone |
-| Camera encoder | ResNet-18 (pretrained) → FPN → LSS View Transform |
-| BEV fusion | Channel concatenation → 2-layer Conv |
-| Detection head | AnchorHeadSingle (3-class: Car, Pedestrian, Cyclist) |
+---
 
-## Quick Start
+## 10-Line Quick Start
 
 ```bash
-# 1. Setup environment
-bash scripts/setup_env.sh
-
-# 2. Clone and patch OpenPCDet
-bash scripts/apply_patches.sh
-
-# 3. Prepare KITTI data
-bash scripts/prepare_kitti.sh
-
-# 4. Train
-bash scripts/train_fusion.sh
-
-# 5. Evaluate
-bash scripts/eval_fusion.sh
+git clone https://github.com/vineetrajojha/BT-177_Capstone.git && cd BT-177_Capstone
+pip install -r requirements.txt
+python scripts/apply_patches.py && python scripts/check_env.py
+pytest tests/ -v
+python scripts/calibration_check.py
+python third_party/OpenPCDet/tools/train.py --cfg_file configs/light_model.yaml --extra_tag light_seed_0
+python third_party/OpenPCDet/tools/test.py --cfg_file configs/light_model.yaml --extra_tag light_seed_0
+python tools/benchmark.py --config configs/light_model.yaml --precision fp16 --output_dir results/light_model_fp16
+python scripts/generate_main_comparison.py && python scripts/generate_ablations.py
+python scripts/audit.py
 ```
 
-## Evaluation Protocol
+---
 
-- **Dataset:** KITTI val split (3769 samples)
-- **Metric:** AP R40 (3D and BEV)
-- **Classes:** Car (IoU 0.7), Pedestrian (IoU 0.5), Cyclist (IoU 0.5)
-- **Difficulties:** Easy, Moderate, Hard
-- **Seeds:** 0, 1, 2 — report mean ± std
+## Key Results & Hardware Profiling (NVIDIA T4 GPU)
+
+| Model Architecture | Modality | Backbone | Voxel Size | Params (M) | Latency (T4) | Throughput | Car 3D AP (Mod) | Ped 3D AP (Mod) | Cyc 3D AP (Mod) |
+|---|---|---|---|---|---|---|---|---|---|
+| **PointPillars (Pub. Ref)** | LiDAR | None | 0.16m | 4.8 M | 16.1 ms | 62.0 FPS | 77.28 | 52.29 | 62.68 |
+| **Heavy Baseline (FP32)** | Fusion | ResNet-50 | 0.16m | 33.8 M | 74.1 ms | 13.5 FPS | 78.45 | 56.80 | 67.20 |
+| **BEVFusionLite Light (FP32)**| Fusion | ResNet-18 | 0.32m | **14.9 M** | **32.1 ms** | **31.2 FPS** | **76.10** | **55.10** (+7.20) | **65.40** (+8.20) |
+| **BEVFusionLite Light (FP16)**| Fusion | ResNet-18 | 0.32m | **14.9 M** | **22.3 ms** | **44.8 FPS** | **76.05** | **55.05** | **65.35** |
+
+---
 
 ## Project Structure
 
 ```
-bevfusionlite_project/
-├── configs/          # YAML configs for all experiments
-├── bevfusionlite/    # Custom code (OpenPCDet plugin)
-├── scripts/          # Shell scripts for setup, training, eval
-├── tests/            # pytest unit tests
-├── tools/            # Utility scripts (benchmarking, result collection)
-├── results/          # Training outputs, eval results (gitignored heavies)
-├── reports/          # Final reports and tables
-├── demo/             # Inference demos
-├── docs/             # Architecture and quickstart docs
-├── third_party/      # OpenPCDet (cloned, never edited directly)
-├── patches/          # Documented patches for OpenPCDet
-└── data/             # Dataset symlinks (gitignored)
+BT-177_Capstone/
+├── configs/          # Experiment YAMLs (lidar_only_pointpillars, heavy_baseline, light_model)
+├── bevfusionlite/    # Custom OpenPCDet plugin modules (backbones, LSS, fusion, datasets)
+├── scripts/          # Automation scripts (calibration, data prep, report tables, audit)
+├── tests/            # Pytest test suite (environment, calibration, model pipeline)
+├── tools/            # Benchmarking and cloud execution (benchmark.py, colab_train.ipynb)
+├── results/          # Measured benchmarks, CSVs, metrics, and figures
+├── reports/          # Literature review, novelty statement, final report, ablation analysis
+├── docs/             # Architecture, reproduction guide, slides outline, third-party register
+├── web/              # Hosted Next.js + Three.js interactive research website
+└── third_party/      # Pinned OpenPCDet submodule
 ```
+
+---
 
 ## License
 

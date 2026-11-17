@@ -1,0 +1,62 @@
+name: BEVFusionLite CI & Audit
+
+on:
+  push:
+    branches: [ main, website ]
+  pull_request:
+    branches: [ main, website ]
+
+jobs:
+  python-tests:
+    name: Unit Tests & Research Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest easydict pyyaml fvcore numba scipy pandas matplotlib scikit-image opencv-python-headless
+
+      - name: Verify Environment & Calibration
+        run: |
+          python scripts/check_env.py
+          python scripts/calibration_check.py
+
+      - name: Run Unit Tests
+        run: |
+          pytest tests/ -v
+
+      - name: Execute Research Audit Gate
+        run: |
+          python scripts/audit.py
+
+  web-build:
+    name: Next.js Website Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: "web/package-lock.json"
+
+      - name: Install npm dependencies
+        run: |
+          npm ci --prefix web
+
+      - name: Build Next.js Production App
+        run: |
+          npm run build --prefix web

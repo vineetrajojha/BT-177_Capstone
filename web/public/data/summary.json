@@ -1,0 +1,29 @@
+{
+  "source_file": "results/main_comparison.csv",
+  "headline_metrics": [
+    {
+      "label": "Parameter Reduction",
+      "value": "-55.9%",
+      "detail": "33.8M to 14.9M",
+      "source_file": "results/main_comparison.csv"
+    },
+    {
+      "label": "Throughput Boost",
+      "value": "2.31x FPS",
+      "detail": "31.2 FPS on NVIDIA T4",
+      "source_file": "results/main_comparison.csv"
+    },
+    {
+      "label": "Car 3D AP Retention",
+      "value": "76.10 AP",
+      "detail": "Within 2.35 AP of Heavy Baseline",
+      "source_file": "results/main_comparison.csv"
+    },
+    {
+      "label": "VRU Recall Gain",
+      "value": "+8.2 AP",
+      "detail": "+7.2 AP Ped, +8.2 AP Cyclist vs LiDAR",
+      "source_file": "results/main_comparison.csv"
+    }
+  ]
+}

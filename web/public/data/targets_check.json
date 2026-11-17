@@ -1,0 +1,41 @@
+{
+  "source_file": "results/targets_check.md",
+  "targets": [
+    {
+      "name": "1. Detection Retention",
+      "threshold": "Car 3D moderate AP within 3.0 AP of Heavy",
+      "measured": "2.35 AP (78.45 vs 76.10)",
+      "status": "MET"
+    },
+    {
+      "name": "2. Parameter Reduction",
+      "threshold": "Total parameters >= 50.0% lower than Heavy",
+      "measured": "55.9% reduction (33.8M -> 14.9M)",
+      "status": "MET"
+    },
+    {
+      "name": "3. Computational FLOP Reduction",
+      "threshold": "GFLOPs >= 50.0% lower than Heavy",
+      "measured": "62.9% reduction (184.2 -> 68.4)",
+      "status": "MET"
+    },
+    {
+      "name": "4. Peak Memory Reduction",
+      "threshold": "Peak VRAM >= 40.0% lower than Heavy on T4",
+      "measured": "57.9% reduction (3820MB -> 1610MB)",
+      "status": "MET"
+    },
+    {
+      "name": "5. Edge Throughput (T4)",
+      "threshold": "FPS >= 2.0x Heavy and >= 20.0 FPS on T4",
+      "measured": "2.31x Heavy (31.2 FPS) (vs 13.5 FPS)",
+      "status": "MET"
+    },
+    {
+      "name": "6. Multi-Modal Synergistic Gain",
+      "threshold": "Fusion beats LiDAR-only on Pedestrian & Cyclist",
+      "measured": "+7.20 AP (Ped), +8.20 AP (Cyc)",
+      "status": "MET"
+    }
+  ]
+}

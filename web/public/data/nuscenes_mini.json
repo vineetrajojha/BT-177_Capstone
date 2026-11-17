@@ -1,0 +1,58 @@
+{
+  "source_file": "results/nuscenes_mini.csv",
+  "data": [
+    {
+      "model": "PointPillars_LiDAR_Only",
+      "camera_backbone": null,
+      "voxel_size": 0.2,
+      "seeds": "0_1_2",
+      "mAP": 29.4,
+      "mAP_std": 0.45,
+      "NDS": 38.6,
+      "NDS_std": 0.52,
+      "latency_ms_t4": 18.2,
+      "fps_t4": 54.9,
+      "source_file": "results/nuscenes_mini.csv"
+    },
+    {
+      "model": "BEVFusionLite_Heavy",
+      "camera_backbone": "ResNet-50",
+      "voxel_size": 0.2,
+      "seeds": "0_1_2",
+      "mAP": 34.2,
+      "mAP_std": 0.4,
+      "NDS": 44.8,
+      "NDS_std": 0.48,
+      "latency_ms_t4": 86.4,
+      "fps_t4": 11.6,
+      "source_file": "results/nuscenes_mini.csv"
+    },
+    {
+      "model": "BEVFusionLite_Light_FP32",
+      "camera_backbone": "ResNet-18",
+      "voxel_size": 0.4,
+      "seeds": "0_1_2",
+      "mAP": 31.8,
+      "mAP_std": 0.38,
+      "NDS": 42.1,
+      "NDS_std": 0.44,
+      "latency_ms_t4": 38.5,
+      "fps_t4": 26.0,
+      "source_file": "results/nuscenes_mini.csv"
+    },
+    {
+      "model": "BEVFusionLite_Light_FP16",
+      "camera_backbone": "ResNet-18",
+      "voxel_size": 0.4,
+      "seeds": "0_1_2",
+      "mAP": 31.75,
+      "mAP_std": 0.39,
+      "NDS": 42.05,
+      "NDS_std": 0.45,
+      "latency_ms_t4": 26.8,
+      "fps_t4": 37.3,
+      "source_file": "results/nuscenes_mini.csv"
+    }
+  ],
+  "limitation_statement": "The nuScenes-mini subset contains only 10 driving sequences (~400 keyframes total, with roughly 320 train and 80 val frames). Evaluating complex multi-camera 3D object detection models on nuScenes-mini provides valuable sanity checks for surround-view calibration, multi-camera geometry lifting, and cross-sensor synchronization; however, metrics obtained on nuScenes-mini (mAP and NDS) carry substantial statistical variance and cannot substitute for official full-benchmark results on the full 1000-scene dataset."
+}
