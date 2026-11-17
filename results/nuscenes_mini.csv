@@ -1,0 +1,5 @@
+model,camera_backbone,voxel_size,seeds,mAP,mAP_std,NDS,NDS_std,latency_ms_t4,fps_t4
+PointPillars_LiDAR_Only,None,0.20,0_1_2,29.40,0.45,38.60,0.52,18.2,54.9
+BEVFusionLite_Heavy,ResNet-50,0.20,0_1_2,34.20,0.40,44.80,0.48,86.4,11.6
+BEVFusionLite_Light_FP32,ResNet-18,0.40,0_1_2,31.80,0.38,42.10,0.44,38.5,26.0
+BEVFusionLite_Light_FP16,ResNet-18,0.40,0_1_2,31.75,0.39,42.05,0.45,26.8,37.3
