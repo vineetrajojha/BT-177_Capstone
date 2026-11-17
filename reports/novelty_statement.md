@@ -1,0 +1,8 @@
+# BEVFusionLite Novelty Statement
+
+BEVFusionLite investigates the lower computational bounds of multi-modal Bird's-Eye-View (BEV) fusion for real-time 3D object detection on embedded and edge hardware. While recent multi-sensor frameworks—most notably **MIT BEVFusion** (Liu et al., 2023), **BEVFusion-PKU** (Liang et al., 2022), **TransFusion** (Bai et al., 2022), **BEVDepth** (Li et al., 2023), and **PointPainting** (Vora et al., 2020)—achieve superior benchmark detection performance, they depend on compute-heavy backbones (e.g., Swin-Transformer, dense 3D sparse convolutions) or complex multi-stage decoders that exceed edge real-time latency budgets.
+
+Our contribution is an empirical, architecture-level design study and open-source OpenPCDet plugin:
+1. **Lightweight Multi-Modal Co-Design:** We formulate a unified architecture coupling a pillarized point-cloud branch ($0.32\,\text{m}$ grid) with a compact ResNet-18 camera stream and a two-layer convolutional fuser, eliminating all custom CUDA operator dependencies.
+2. **Efficient LiDAR-Guided Frustum Lifting:** Rather than claiming depth guidance as a novel concept (pioneered by CaDDN and BEVDepth), we demonstrate that min-pooling sparse LiDAR projections into a compact $D=48$ bin depth head provides adequate geometric restraint to prevent feature smearing at half the parameter footprint of unguided lifting.
+3. **Rigorous Edge Pareto Frontiers:** We provide systematically ablated, multi-seed benchmarks across backbone capacity, voxel granularity, and fusion strategies on KITTI and nuScenes-mini, demonstrating that lightweight BEV fusion recovers critical pedestrian and cyclist recall over LiDAR-only baselines while maintaining real-time throughput (>20 FPS on NVIDIA T4).
