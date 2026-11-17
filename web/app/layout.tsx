@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://bevfusionlite.vineetraj.tech"),
@@ -33,10 +32,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className="bg-dark-900 text-slate-100 flex flex-col min-h-screen">
+      <body className="bg-black text-zinc-100 flex flex-col min-h-screen antialiased selection:bg-blue-600 selection:text-white">
         <Navigation />
         <main className="flex-grow">{children}</main>
-        <Footer />
       </body>
     </html>
   );

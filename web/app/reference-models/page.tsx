@@ -80,51 +80,51 @@ export default function ReferenceModelsPage() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Title */}
       <div>
-        <h1 className="text-3xl font-black text-white tracking-tight">Reference Models & Third-Party Assets</h1>
-        <p className="text-xs text-slate-400 mt-1">
-          Catalog of external codebases, pretrained checkpoints, and datasets. Source: <code className="text-brand-400 font-mono">{tpData.source_file}</code>
+        <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Reference Models &amp; Third-Party Assets</h1>
+        <p className="text-xs text-zinc-400 mt-1">
+          Catalog of external codebases, pretrained checkpoints, and datasets. Source: <code className="text-zinc-300 font-mono text-[11px] bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">{tpData.source_file}</code>
         </p>
       </div>
 
       {/* Disclaimers & Integrity */}
-      <div className="p-6 rounded-xl bg-amber-500/10 border border-amber-500/20 space-y-2">
-        <div className="flex items-center gap-2 text-amber-400 font-bold text-sm">
-          <Shield className="w-4 h-4" />
-          Strict Scientific Integrity Notice
+      <div className="p-4 rounded-lg bg-zinc-950 border border-zinc-800 space-y-1.5">
+        <div className="flex items-center gap-2 text-zinc-300 font-medium text-xs">
+          <Shield className="w-3.5 h-3.5 text-zinc-400" />
+          <span>Strict Scientific Integrity Notice</span>
         </div>
-        <p className="text-xs text-slate-300 leading-relaxed">
+        <p className="text-xs text-zinc-400 leading-relaxed">
           None of the pretrained models or external checkpoints listed below were authored by our team. The PointPillars reference baseline is taken verbatim from the peer-reviewed, published OpenPCDet model zoo and is included exclusively for standardized benchmarking comparisons. All ImageNet backbone checkpoints were sourced from the official PyTorch Torchvision release under BSD-3-Clause terms.
         </p>
       </div>
 
       {/* Frameworks */}
-      <div className="space-y-4">
-        <h2 className="text-lg font-bold text-white flex items-center gap-2">
-          <Layers className="w-5 h-5 text-brand-400" />
-          External Frameworks & Libraries
+      <div className="space-y-3">
+        <h2 className="text-base font-semibold text-white flex items-center gap-2">
+          <Layers className="w-4 h-4 text-zinc-400" />
+          External Frameworks &amp; Libraries
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {frameworks.map((fw, idx) => (
-            <div key={idx} className="p-6 rounded-xl bg-dark-800/80 border border-dark-700 space-y-4 flex flex-col justify-between">
-              <div className="space-y-2">
+            <div key={idx} className="p-4 rounded-lg bg-zinc-950 border border-zinc-800 space-y-3 flex flex-col justify-between">
+              <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <h3 className="font-bold text-white text-sm">{fw.name}</h3>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-dark-700 text-slate-300 border border-dark-600">
+                  <h3 className="font-semibold text-white text-xs">{fw.name}</h3>
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-zinc-900 text-zinc-300 border border-zinc-800">
                     {fw.license}
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">{fw.role}</p>
+                <p className="text-xs text-zinc-400 leading-relaxed">{fw.role}</p>
               </div>
-              <div className="pt-4 border-t border-dark-700/60 space-y-2">
-                <div className="text-[10px] text-slate-500 font-mono">Ref: {fw.commit}</div>
+              <div className="pt-3 border-t border-zinc-900 space-y-1">
+                <div className="text-[10px] text-zinc-500 font-mono">Ref: {fw.commit}</div>
                 <a
                   href={fw.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-1.5 text-xs text-brand-400 hover:text-brand-300 transition-colors font-medium"
+                  className="flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                 >
                   <span>Repository</span>
                   <ExternalLink className="w-3 h-3" />
@@ -136,14 +136,14 @@ export default function ReferenceModelsPage() {
       </div>
 
       {/* Pretrained Weights */}
-      <div className="space-y-4">
-        <h2 className="text-lg font-bold text-white flex items-center gap-2">
-          <Database className="w-5 h-5 text-brand-400" />
+      <div className="space-y-3">
+        <h2 className="text-base font-semibold text-white flex items-center gap-2">
+          <Database className="w-4 h-4 text-zinc-400" />
           Pretrained Model Checkpoints
         </h2>
-        <div className="overflow-x-auto rounded-xl border border-dark-700 bg-dark-800/40">
+        <div className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-950">
           <table className="w-full text-left text-xs">
-            <thead className="bg-dark-800/90 text-slate-400 border-b border-dark-700 uppercase font-mono text-[10px] tracking-wider">
+            <thead className="bg-zinc-900/90 text-zinc-400 border-b border-zinc-800 uppercase font-mono text-[10px] tracking-wider">
               <tr>
                 <th className="py-3 px-4 font-semibold">Model</th>
                 <th className="py-3 px-3 font-semibold">Source Provider</th>
@@ -152,14 +152,14 @@ export default function ReferenceModelsPage() {
                 <th className="py-3 px-4 font-semibold">Role in BEVFusionLite</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-dark-700/60 text-slate-300 font-mono text-xs">
+            <tbody className="divide-y divide-zinc-800/80 text-zinc-300 font-mono text-xs">
               {pretrainedWeights.map((pw, idx) => (
-                <tr key={idx} className="hover:bg-dark-700/30 transition-colors">
-                  <td className="py-3 px-4 font-sans font-bold text-white">{pw.model}</td>
-                  <td className="py-3 px-3 font-sans text-slate-400">{pw.source}</td>
-                  <td className="py-3 px-3 text-brand-400 text-[11px]">{pw.checkpoint}</td>
-                  <td className="py-3 px-3 text-slate-400">{pw.license}</td>
-                  <td className="py-3 px-4 font-sans text-slate-300 text-[11px]">{pw.role}</td>
+                <tr key={idx} className="hover:bg-zinc-900/50 transition-colors">
+                  <td className="py-3 px-4 font-sans font-medium text-white">{pw.model}</td>
+                  <td className="py-3 px-3 font-sans text-zinc-400">{pw.source}</td>
+                  <td className="py-3 px-3 text-zinc-300 text-[11px]">{pw.checkpoint}</td>
+                  <td className="py-3 px-3 text-zinc-400">{pw.license}</td>
+                  <td className="py-3 px-4 font-sans text-zinc-400 text-[11px]">{pw.role}</td>
                 </tr>
               ))}
             </tbody>
@@ -168,23 +168,23 @@ export default function ReferenceModelsPage() {
       </div>
 
       {/* Datasets */}
-      <div className="space-y-4">
-        <h2 className="text-lg font-bold text-white flex items-center gap-2">
-          <CheckCircle className="w-5 h-5 text-brand-400" />
-          Dataset Attribution & Terms
+      <div className="space-y-3">
+        <h2 className="text-base font-semibold text-white flex items-center gap-2">
+          <CheckCircle className="w-4 h-4 text-zinc-400" />
+          Dataset Attribution &amp; Terms
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {datasets.map((ds, idx) => (
-            <div key={idx} className="p-6 rounded-xl bg-dark-800/80 border border-dark-700 space-y-3">
+            <div key={idx} className="p-4 rounded-lg bg-zinc-950 border border-zinc-800 space-y-2">
               <div className="flex items-center justify-between">
-                <h3 className="font-bold text-white text-sm">{ds.name}</h3>
-                <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-dark-700 text-amber-400 border border-amber-500/20">
+                <h3 className="font-semibold text-white text-xs">{ds.name}</h3>
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-zinc-900 text-zinc-300 border border-zinc-800">
                   Non-Commercial
                 </span>
               </div>
-              <p className="text-xs text-slate-400">Provider: {ds.provider}</p>
-              <p className="text-xs text-slate-300 leading-relaxed">{ds.usage}</p>
-              <div className="pt-2 border-t border-dark-700/60 text-[11px] font-mono text-slate-500">
+              <p className="text-[11px] text-zinc-500">Provider: {ds.provider}</p>
+              <p className="text-xs text-zinc-400 leading-relaxed">{ds.usage}</p>
+              <div className="pt-2 border-t border-zinc-900 text-[11px] font-mono text-zinc-500">
                 License: {ds.license}
               </div>
             </div>

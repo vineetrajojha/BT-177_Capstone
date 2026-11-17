@@ -1,4 +1,4 @@
-import { BookOpen, ExternalLink, ShieldCheck, Quote } from "lucide-react";
+import { BookOpen, ExternalLink, Quote } from "lucide-react";
 import litData from "../../public/data/literature.json";
 
 interface Paper {
@@ -43,75 +43,75 @@ const PAPERS: Paper[] = [
 
 export default function LiteraturePage() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       <div>
-        <h1 className="text-3xl font-black text-white tracking-tight">Literature Review & Novelty Statement</h1>
-        <p className="text-xs text-slate-400 mt-1">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">Literature Review &amp; Novelty Statement</h1>
+        <p className="text-xs text-zinc-400 mt-1">
           27 verified citations across LiDAR detection, BEV lifting, multi-modal fusion, and edge architectures.
         </p>
       </div>
 
       {/* Novelty Statement Card */}
-      <div className="p-8 rounded-2xl bg-dark-800/80 border border-brand-500/30 space-y-4 relative">
-        <div className="flex items-center gap-2 text-brand-400 font-bold text-sm">
-          <Quote className="w-5 h-5" />
+      <div className="p-6 rounded-lg bg-zinc-950 border border-zinc-800 space-y-3 relative">
+        <div className="flex items-center gap-2 text-white font-semibold text-xs">
+          <Quote className="w-4 h-4 text-zinc-400" />
           <span>BEVFusionLite Scientific Novelty Statement (&le; 250 Words)</span>
         </div>
-        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-4xl">
-          BEVFusionLite investigates the lower computational bounds of multi-modal Bird's-Eye-View (BEV) fusion for real-time 3D object detection on embedded and edge hardware. While recent multi-sensor frameworks—most notably <strong>MIT BEVFusion</strong>, <strong>BEVFusion-PKU</strong>, <strong>TransFusion</strong>, <strong>BEVDepth</strong>, and <strong>PointPainting</strong>—achieve superior benchmark detection performance, they depend on compute-heavy backbones (e.g., Swin-Transformer, dense 3D sparse convolutions) or complex multi-stage decoders that exceed edge real-time latency budgets.
+        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-4xl">
+          BEVFusionLite investigates the lower computational bounds of multi-modal Bird&apos;s-Eye-View (BEV) fusion for real-time 3D object detection on embedded and edge hardware. While recent multi-sensor frameworks—most notably <strong>MIT BEVFusion</strong>, <strong>BEVFusion-PKU</strong>, <strong>TransFusion</strong>, <strong>BEVDepth</strong>, and <strong>PointPainting</strong>—achieve superior benchmark detection performance, they depend on compute-heavy backbones (e.g., Swin-Transformer, dense 3D sparse convolutions) or complex multi-stage decoders that exceed edge real-time latency budgets.
         </p>
-        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed max-w-4xl">
+        <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed max-w-4xl">
           Our contribution is an empirical, architecture-level design study:
           (1) <em>Lightweight Multi-Modal Co-Design:</em> Coupling a 0.32m pillarized LiDAR stream with a compact ResNet-18 camera stream and a two-layer conv fuser, eliminating proprietary CUDA kernels;
           (2) <em>Efficient LiDAR-Guided Frustum Lifting:</em> Demonstrating that min-pooling sparse LiDAR projections into a compact D=48 bin depth head provides adequate geometric restraint to eliminate ray smearing at half the parameter footprint of unguided lifting;
           (3) <em>Rigorous Edge Pareto Frontiers:</em> Proving that lightweight BEV fusion recovers critical pedestrian and cyclist recall (+7.20 AP Ped, +8.20 AP Cyc) over LiDAR-only baselines while maintaining real-time throughput (&gt;20 FPS on NVIDIA T4).
         </p>
-        <div className="text-[11px] text-slate-500 font-mono">
+        <div className="text-[10px] text-zinc-500 font-mono pt-1">
           source: reports/novelty_statement.md | audited 222 words
         </div>
       </div>
 
       {/* Verified Papers Table */}
-      <div className="space-y-4">
+      <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-white flex items-center gap-2">
-            <BookOpen className="w-5 h-5 text-brand-400" />
+          <h2 className="text-base font-semibold text-white flex items-center gap-2">
+            <BookOpen className="w-4 h-4 text-zinc-400" />
             Verified Related Works Directory (27 Seminal Papers)
           </h2>
-          <span className="text-xs text-slate-400">All DOI & arXiv links verified</span>
+          <span className="text-xs text-zinc-500">All DOI &amp; arXiv links verified</span>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-dark-700 bg-dark-800/40">
+        <div className="overflow-x-auto rounded-lg border border-zinc-800 bg-zinc-950">
           <table className="w-full text-left text-xs">
-            <thead className="bg-dark-800/90 text-slate-400 border-b border-dark-700 uppercase font-mono text-[10px] tracking-wider">
+            <thead className="bg-zinc-900/90 text-zinc-400 border-b border-zinc-800 uppercase font-mono text-[10px] tracking-wider">
               <tr>
-                <th className="py-3 px-4 font-semibold">Title & Authors</th>
+                <th className="py-3 px-4 font-semibold">Title &amp; Authors</th>
                 <th className="py-3 px-3 font-semibold">Category</th>
                 <th className="py-3 px-3 font-semibold">Venue / Year</th>
                 <th className="py-3 px-3 font-semibold">Identifier</th>
                 <th className="py-3 px-4 font-semibold text-right">Link</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-dark-700/60 font-sans text-slate-300">
+            <tbody className="divide-y divide-zinc-800/80 font-sans text-zinc-300">
               {PAPERS.map((p, idx) => (
-                <tr key={idx} className="hover:bg-dark-700/30 transition-colors">
+                <tr key={idx} className="hover:bg-zinc-900/50 transition-colors">
                   <td className="py-3 px-4 font-medium text-white max-w-md">
                     <div>{p.title}</div>
-                    <div className="text-[11px] text-slate-400 mt-0.5">{p.authors}</div>
+                    <div className="text-[11px] text-zinc-400 mt-0.5">{p.authors}</div>
                   </td>
                   <td className="py-3 px-3">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-dark-700 text-brand-400 border border-dark-600">
+                    <span className="px-2 py-0.5 rounded text-[10px] bg-zinc-900 text-zinc-300 border border-zinc-800">
                       {p.category}
                     </span>
                   </td>
-                  <td className="py-3 px-3 font-mono">{p.venue} {p.year}</td>
-                  <td className="py-3 px-3 font-mono text-slate-400 text-[11px]">{p.arxiv}</td>
+                  <td className="py-3 px-3 text-zinc-400">{p.venue} {p.year}</td>
+                  <td className="py-3 px-3 text-zinc-400 font-mono text-[11px]">{p.arxiv}</td>
                   <td className="py-3 px-4 text-right">
                     <a
                       href={p.link}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-1 text-brand-400 hover:text-brand-300 text-xs font-semibold"
+                      className="inline-flex items-center gap-1 text-xs text-blue-400 hover:text-blue-300 font-medium"
                     >
                       <span>Paper</span>
                       <ExternalLink className="w-3 h-3" />

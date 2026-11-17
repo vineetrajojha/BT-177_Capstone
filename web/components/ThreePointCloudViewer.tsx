@@ -35,7 +35,7 @@ export default function ThreePointCloudViewer({
 
     // 1. Scene
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x090d16);
+    scene.background = new THREE.Color(0x000000);
     sceneRef.current = scene;
 
     // 2. Camera: In LiDAR coords (x forward, y left, z up)
@@ -54,7 +54,7 @@ export default function ThreePointCloudViewer({
     rendererRef.current = renderer;
 
     // 4. Grid Helper in XY ground plane
-    const gridHelper = new THREE.GridHelper(80, 40, 0x334155, 0x1e293b);
+    const gridHelper = new THREE.GridHelper(80, 40, 0x27272a, 0x121215);
     gridHelper.rotation.x = Math.PI / 2;
     gridHelper.position.set(30, 0, -1.7);
     scene.add(gridHelper);
@@ -231,13 +231,15 @@ export default function ThreePointCloudViewer({
   }, [predictedBoxes, gtBoxes, showGT, scoreThreshold, classFilter]);
 
   return (
-    <div className="relative w-full h-[450px] rounded-xl overflow-hidden border border-dark-700 bg-dark-900">
+    <div className="relative w-full h-[450px] rounded-lg overflow-hidden border border-zinc-800 bg-black">
       <div ref={mountRef} className="w-full h-full cursor-grab active:cursor-grabbing" />
-      <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-md bg-dark-900/80 backdrop-blur border border-dark-700 text-[11px] text-slate-400 pointer-events-none flex items-center gap-3">
+      <div className="absolute bottom-3 left-3 px-3 py-1.5 rounded-md bg-zinc-950/90 backdrop-blur border border-zinc-800 text-[11px] text-zinc-400 pointer-events-none flex items-center gap-3">
         <span>Drag: Rotate</span>
         <span>Scroll: Zoom</span>
-        <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-brand-500 inline-block" /> Prediction</span>
-        {showGT && <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-full bg-yellow-400 inline-block" /> Ground Truth</span>}
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500 inline-block" /> Car</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-blue-500 inline-block" /> Ped</span>
+        <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-orange-500 inline-block" /> Cyc</span>
+        {showGT && <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-yellow-400 inline-block" /> Ground Truth</span>}
       </div>
     </div>
   );
