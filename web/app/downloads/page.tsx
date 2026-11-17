@@ -8,6 +8,14 @@ export default function DownloadsPage() {
       category: "Research Reports & Presentations",
       items: [
         {
+          title: "Project 571 Final Research Report (Word DOCX)",
+          desc: "Complete academic capstone report by Sneha Yadav, Vineet Raj, Aditya Srivastava (Guide: Mr. Amit Katoch). Includes all checklists, formulas, and tables.",
+          file: "reports/Project_571_BEVFusionLite_Final_Report.docx",
+          downloadUrl: "/data/Project_571_BEVFusionLite_Final_Report.docx",
+          size: "54 KB",
+          icon: FileText
+        },
+        {
           title: "Comprehensive Final Research Report (Markdown)",
           desc: "Full academic report with abstract, mathematical formulation, ablation tables, and literature review.",
           file: "reports/final_report.md",
