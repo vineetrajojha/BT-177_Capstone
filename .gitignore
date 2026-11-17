@@ -5,3 +5,9 @@ __pycache__/
 
 # Keep nested third-party Git metadata out of the parent repository.
 third_party/*/.git/
+
+# Node / Next.js
+web/node_modules/
+web/.next/
+web/out/
+*.log
